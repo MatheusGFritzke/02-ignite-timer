@@ -49,18 +49,6 @@ export function CyclesContextProvider({
     setAmountSecondsPassed(seconds)
   }
 
-  function markCurrentCyclesAsFinished() {
-    setCycles((state) =>
-      state.map((cycle) => {
-        if (cycle.id === activeCycleId) {
-          return { ...cycle, finishedDate: new Date() }
-        } else {
-          return cycle
-        }
-      }),
-    )
-  }
-
   function createNewCycle(data: CreateCycleData) {
     const id = String(new Date().getTime())
 
@@ -89,15 +77,27 @@ export function CyclesContextProvider({
     setActiveCycleId(null)
   }
 
+  function markCurrentCyclesAsFinished() {
+    setCycles((state) =>
+      state.map((cycle) => {
+        if (cycle.id === activeCycleId) {
+          return { ...cycle, finishedDate: new Date() }
+        } else {
+          return cycle
+        }
+      }),
+    )
+  }
+
   return (
     <CyclesContext.Provider
       value={{
         cycles,
         activeCycle,
         activeCycleId,
+        amountSecondsPassed,
         markCurrentCyclesAsFinished,
         setActiveCycleIdNull,
-        amountSecondsPassed,
         setSecondsPassed,
         createNewCycle,
         interruptCurrentCycle,

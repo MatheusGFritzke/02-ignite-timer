@@ -7,9 +7,9 @@ export function Countdown() {
   const {
     activeCycle,
     activeCycleId,
+    amountSecondsPassed,
     markCurrentCyclesAsFinished,
     setActiveCycleIdNull,
-    amountSecondsPassed,
     setSecondsPassed,
   } = useContext(CyclesContext)
 
@@ -57,7 +57,7 @@ export function Countdown() {
 
   useEffect(() => {
     if (activeCycle) document.title = `${minutes}:${seconds}`
-    else document.title = 'Ignte Timer'
+    else document.title = 'Ignite Timer'
   }, [minutes, seconds, activeCycle])
 
   return (
