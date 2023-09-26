@@ -21,18 +21,18 @@ interface CyclePayload {
 }
 
 interface CyclesActions {
-  type: ActionTypes
-  payload: CyclePayload
+  type?: ActionTypes
+  payload?: CyclePayload
 }
 
-export function cyclesReducer(state: CyclesState, action: any) {
+export function cyclesReducer(state: CyclesState, action: CyclesActions) {
   const type = action.type
 
   switch (type) {
     case ActionTypes.ADD_NEW_CYCLE: {
       return produce(state, (draft) => {
-        draft.cycles.push(action.payload.newCycle)
-        draft.activeCycleId = action.payload.newCycle.id
+        draft.cycles.push(action.payload!.newCycle)
+        draft.activeCycleId = action.payload!.newCycle.id
       })
     }
 
